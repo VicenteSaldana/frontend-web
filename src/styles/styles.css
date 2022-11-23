@@ -1,0 +1,292 @@
+
+/*https://www.w3schools.com/css/css_navbar.asp*/
+@import '~bootstrap/dist/css/bootstrap.css';
+
+.side-bar {
+    display: block;
+    height: 100%;
+    background-color: aqua;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    width: 25%;
+}
+.titulo {
+    background-color: darkturquoise;
+    color: black;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+.flex-container {
+  margin: 20 px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-gap: 32px;
+}
+
+.flex-item-picture{
+  flex:  6 3 200px;
+}
+.flex-item-button{
+  margin-top: 20px;
+  flex: 1 1 20px;
+}
+.flex-item-p{
+  align-self: center;
+  background-color:burlywood;
+}
+.flex-container-nosotros {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 32px;
+}
+.flex-container-nosotros .box{
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: burlywood;
+  padding: 30px;
+}
+.flex-container-integrantes {
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  justify-content: left;
+  margin-bottom: 20px;
+}
+.flex-container-integrante {
+  margin: auto;
+  padding: auto;
+  display: flex;
+  flex-direction: row;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  justify-content: center;
+}
+
+.preguntas {
+  background-color: #D6D58E;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+img{
+  width: 200px;
+  margin: 7px;
+  }
+
+/* nav{
+  display: block;
+} */
+
+.volver {
+  margin: 7px 2px;
+  padding: 20px 20px;
+  border-radius: 15px;
+  background-color:#333;
+  border: none;
+  color: white;
+  text-align: center;
+  display: inline-block;
+}
+
+.about {
+  background-color: #D6D58E;
+  font-family:Georgia, 'Times New Roman', Times, serif; 
+  margin-top: 20px;
+}
+
+a {
+  color:hotpink
+}
+
+.integrantes img{
+  vertical-align: text-top;
+  float: left;
+  clear: both;
+  margin: 7px;
+}
+
+.jugar{
+    background-color: skyblue;
+    cursor: pointer;
+    width: 300px;
+    height: 200%;
+    font-family: "Lucida Console", "Courier New", monospace;
+    border-radius: 10px;
+
+}
+.jugar:hover{
+    background-color: darkturquoise;
+}
+.form-div{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin: auto;
+  width: 15%;
+  height: 100%;
+}
+.flex-container-form{
+  grid-gap: 20px;
+  width: 15%;
+  align-items: center;
+  margin-left: 43%;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+  color: black;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.flex-container-form .box{
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 10px;
+}
+.button{
+    margin-top: 20px;
+    background-color: skyblue;
+    cursor: pointer;
+    font-family: "Lucida Console", "Courier New", monospace;
+    border-radius: 10px;
+}
+.button:hover{
+    background-color: darkturquoise;
+}
+.texto{
+    background-color: #D6D58E;
+}
+
+.tablero {
+  display:grid;
+  --s: 100px;  /* size  */
+  --m: 4px;    /* margin */
+  --f: calc(var(--s) * 1.732 + 4 * var(--m) - 1px); 
+
+}
+.container {
+  font-size: 0; /* disable white space between inline block element */
+}
+
+.container div {
+  width: var(--s);
+  margin: var(--m);
+  height: calc(var(--s) * 1.1547);
+  display: inline-block;
+  font-size:initial;
+  background-color: lightgreen;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  margin-bottom: calc(var(--m) - var(--s) * 0.2885);
+}
+.container button {
+  width: var(--s);
+  margin: var(--m);
+  height: calc(var(--s) * 1.1547);
+  display: inline-block;
+  font-size:initial;
+  background-color: lightgreen;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  margin-bottom: calc(var(--m) - var(--s) * 0.2885);
+}
+
+.container button:hover{
+  width: var(--s);
+  margin: var(--m);
+  height: calc(var(--s) * 1.1547);
+  display: inline-block;
+  font-size:initial;
+  background-color: green;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  margin-bottom: calc(var(--m) - var(--s) * 0.2885);
+}
+
+.container::before {
+  content: "";
+  width: calc(var(--s) / 2 + var(--m));
+  float: left;
+  height: 120%; 
+  shape-outside: repeating-linear-gradient(#0000 0 calc(var(--f) - 3px), #000 0 var(--f));
+}
+
+.canvasHex {
+  border: 1px solid black;
+  position: absolute;
+  left: 0;
+  
+}
+.canvasBackground {
+  border: 1px solid black;
+  position: absolute;
+  left: 0;
+
+}
+.espacioTablero {
+  width: 800px;
+  height: 600px;
+  display: flex;
+}
+
+div {
+  position: relative
+}
+
+.Vidas {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  background-color:rgb(73, 73, 66);
+  height: 600px;
+
+
+}
+
+.ambos {
+  display: flex;
+  height: 600px;
+  
+
+}
+.BarrasVida{
+  background-color:rgb(73, 73, 66);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  left: 4px;
+
+}
+
+.Objetos{
+  background-color:rgb(73, 73, 66);
+  display: flex;
+  flex-direction: column;
+  left: 4px;
+
+}
