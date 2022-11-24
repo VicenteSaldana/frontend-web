@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Acercade from './Acercade';
 import Comojugar from './Comojugar';
 import Conocenos from './Conocenos';
@@ -11,28 +11,28 @@ import CookieAuthProvider from '../contexts/cookieAuth';
 import TokenAuthProvider from '../contexts/tokenAuth';
 import LogOut from './LogOut';
 
-function Routing(){
-    return <BrowserRouter>
-    <CookieAuthProvider>
-    <TokenAuthProvider>
-        <Routes>
-            <Route path = "/home" element = {<Home/>}/>
-            <Route path = "/" element = {<Home/>}/>
+function Routing() {
+  return (
+    <BrowserRouter>
+      <CookieAuthProvider>
+        <TokenAuthProvider>
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
 
-            <Route path = "/acercade" element = {<Acercade/>}></Route>
-            <Route path = "/comojugar" element = {<Comojugar/>}/>
-            <Route path = "/conocenos" element = {<Conocenos/>}/>
-            <Route path = "/registro" element = {<Registro/>}/>
-            <Route path = "/preguntas" element = {<Preguntas/>}/>
-            <Route path = "/login" element = {<IniciarSesion/>}/>
-            <Route path = "/tablero" element = {<Game/>}/>
-            <Route path = "/logout" element = {<LogOut/>}/>
+            <Route path="/acercade" element={<Acercade />} />
+            <Route path="/comojugar" element={<Comojugar />} />
+            <Route path="/conocenos" element={<Conocenos />} />
+            <Route path="/registro" element={<Registro />} />
+            <Route path="/preguntas" element={<Preguntas />} />
+            <Route path="/login" element={<IniciarSesion />} />
+            <Route path="/tablero" element={<Game />} />
+            <Route path="/logout" element={<LogOut />} />
 
-
-                    </Routes>
-                    </TokenAuthProvider>
-                    </CookieAuthProvider>
+          </Routes>
+        </TokenAuthProvider>
+      </CookieAuthProvider>
     </BrowserRouter>
-
+  );
 }
-export default Routing
+export default Routing;
