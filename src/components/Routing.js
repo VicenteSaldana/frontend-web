@@ -10,6 +10,8 @@ import Home from './Home';
 import CookieAuthProvider from '../contexts/cookieAuth';
 import TokenAuthProvider from '../contexts/tokenAuth';
 import LogOut from './LogOut';
+import Partidas from './Partidas';
+import WaitingRoom from './WaitingRoom';
 
 function Routing() {
   return (
@@ -28,6 +30,8 @@ function Routing() {
             <Route path="/login" element={<IniciarSesion />} />
             <Route path="/tablero" element={<Game />} />
             <Route path="/logout" element={<LogOut />} />
+            <Route path="/partidas" element={<Partidas />} />
+            <Route path="/waitingroom" element={<WaitingRoom />} />
 
           </Routes>
         </TokenAuthProvider>

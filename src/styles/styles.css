@@ -154,9 +154,9 @@ a {
 }
 .flex-container-form{
   grid-gap: 20px;
-  width: 15%;
+  width: 30%;
   align-items: center;
-  margin-left: 43%;
+  margin-left: 33%;
   border-radius: 10px;
   padding: 20px;
   background-color: white;
@@ -289,4 +289,33 @@ div {
   flex-direction: column;
   left: 4px;
 
+}
+
+.batalla{
+
+  background-color: aliceblue;
+  width: 800px;
+  height: 600px;
+  position: absolute;
+  bottom: 0;
+  color: #000;
+  border: 4px black solid;
+}
+.texto-batalla{
+
+  background-color: aliceblue;
+  height: 200px;
+  position: absolute;
+  bottom: 0;
+  right:0;
+  left: 0;
+  color: #000;
+  border-top: 4px black solid;
+}
+
+.pregunta{
+  margin: 20px
+}
+#botonbatalla{
+  margin:20px
 }

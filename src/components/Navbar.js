@@ -15,7 +15,7 @@ function Navbar() {
             {' '}
           </li>
           <li><a href="/acercade">Acerca de...</a></li>
-          <li><a href="/tablero">Tablero</a></li>
+          <li><a href="/Partidas">Jugar</a></li>
           <li><a href="/logout">Cerrar Sesión</a></li>
         </ul>
       ) : (

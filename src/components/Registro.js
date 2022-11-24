@@ -27,6 +27,9 @@ function Registro() {
     })
       .then((response) => {
         console.log(response);
+        if (response.status === 201) {
+          alert('Te has registrado correctamente. Ve a Iniciar Sesión para comenzar.');
+        }
       })
       .catch((error) => {
         console.log(error);
