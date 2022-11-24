@@ -52,7 +52,7 @@ export default class Tablero extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.currentHex !=== this.state.currentHex) {
+    if (nextState.currentHex != this.state.currentHex) {
       const {
         q, r, s, x, y,
       } = nextState.currentHex;
@@ -111,7 +111,7 @@ export default class Tablero extends React.Component {
     const rBottomSide = Math.round((canvasHeight - hexOrigin.y) / vertDist);
     let p = 0;
     for (let r = 0; r <= rBottomSide; r++) {
-      if (r % 2 === 0 && r !=== 0) {
+      if (r % 2 === 0 && r != 0) {
         p++;
       }
       for (let q = -qLeftSide; q <= qRightSide; q++) {
@@ -124,7 +124,7 @@ export default class Tablero extends React.Component {
     }
     let n = 0;
     for (let r = -1; r >= -rTopSide; r--) {
-      if (r % 2 !=== 0) {
+      if (r % 2 != 0) {
         n++;
       }
       for (let q = -qLeftSide; q <= qRightSide; q++) {
