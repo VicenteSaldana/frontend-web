@@ -7,7 +7,7 @@ function Acercade() {
         </li>
         <li>
           {' '}
-          Esta es la página web de "Ratón Volador", un juego diseñado para que tú y tus amigos puedan
+          Esta es la página web de Ratón Volador, un juego diseñado para que tú y tus amigos puedan
           compartir horad de risas y diversión.
           <dd>
             <p>

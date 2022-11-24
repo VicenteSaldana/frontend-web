@@ -9,7 +9,7 @@ function Preguntas() {
           ¿Qué es esto?
           <dd>
             <p>
-              Esta es la página web de "Ratón Volador", un juego diseñado para que tú y tus amigos puedan
+              Esta es la página web de Ratón Volador, un juego diseñado para que tú y tus amigos puedan
               compartir horas de risas y diversión.
             </p>
           </dd>
@@ -18,7 +18,7 @@ function Preguntas() {
           ¿Cómo me registro?
           <dd>
             <p>
-              Para registrarte basta con acceder a la sección de "Regístrate" en la barra de navegación, ya ahí debes
+              Para registrarte basta con acceder a la sección de Regístrate en la barra de navegación, ya ahí debes
               escribir el nombre de usuario que quieras tener y una contraseña. Al clickear el botón de registro tu cuenta
               estará creada y lista para que puedas acceder y disfrutar de Ratón Volador con tus amigos.
             </p>

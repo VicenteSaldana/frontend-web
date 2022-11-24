@@ -6,7 +6,7 @@ function Conocenos() {
       </div>
       <div className="box">
         Somos tres estudiantes que actualmente estamos cursando el ramo Tecnologías y Aplicaciones Web con el profesor Hernán Cabrera y este es
-        el resultado de lo que vamos haciendo en nuestro proyecto, el cual es un juego web llamado "RATÓN VOLADOR".
+        el resultado de lo que vamos haciendo en nuestro proyecto, el cual es un juego web llamado RATÓN VOLADOR.
       </div>
       <h2>
         Integrantes:

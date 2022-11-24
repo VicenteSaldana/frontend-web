@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { async } from 'q';
 
 export const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -21,7 +20,7 @@ export default class Tablero extends React.Component {
       },
       clickedHexs: [{ q: 0, r: 0, s: 0 }],
       clickedid: [{ q: 0, r: 0, s: 0 }],
-      objetos: [],
+      //  objetos: [],
       tablero: null,
     };
     this.handleMouseMove = this.handleMouseMove.bind(this);
@@ -52,7 +51,7 @@ export default class Tablero extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.currentHex != this.state.currentHex) {
+    if (nextState.currentHex !== this.state.currentHex) {
       const {
         q, r, s, x, y,
       } = nextState.currentHex;
@@ -66,6 +65,14 @@ export default class Tablero extends React.Component {
       return true;
     }
     return false;
+  }
+
+  getHexCornerCoord(center, i) {
+    const angle_deg = 60 * i - 30;
+    const angle_rad = Math.PI / 180 * angle_deg;
+    const x = center.x + this.state.hexSize * Math.cos(angle_rad);
+    const y = center.y + this.state.hexSize * Math.sin(angle_rad);
+    return this.Point(x, y);
   }
 
   tablero = async () => {
@@ -82,21 +89,51 @@ export default class Tablero extends React.Component {
     this.setState({
 
       tablero: response.data.tablero,
-      rata: response.data.rata,
     });
   };
 
-  drawClickedHexes() {
-    this.state.clickedHexs.map((h) => this.drawClickedHex(h));
+  /*   ObtenerRata = async () => {
+    const response = await axios.post(`${SERVER_URL}/tableros/${this.state.tablero.data.id}`, {
+
+    });
+  }; */
+  getHexParameters() {
+    const hexHeight = this.state.hexSize * 2;
+    const hexWidth = Math.sqrt(3) / 2 * hexHeight;
+    const vertDist = hexHeight * 3 / 4;
+    const horizDist = hexWidth;
+    return {
+      hexWidth, hexHeight, vertDist, horizDist,
+    };
   }
 
-  drawHex(canvasID, center, lineColor, width, fillColor) {
-    for (let i = 0; i <= 5; i++) {
-      const start = this.getHexCornerCoord(center, i);
-      const end = this.getHexCornerCoord(center, i + 1);
-      this.fillHex(canvasID, center, fillColor);
-      this.drawLine(canvasID, start, end, lineColor, width);
+  ConectarHex = async (q, r, s) => {
+    const response = await axios.post(`${SERVER_URL}/tableros/${this.state.tablero.id}`, {
+      Q: q,
+      R: r,
+      S: s,
+    });
+    if (response.data.objeto) {
+      if (response.data.objeto.tipo === 10) {
+        alert('Encontraste la RATA VOLADORA');
+        console.log('Encontraste la RATA VOLADORA');
+      } else {
+        alert('pisaste un objeto!');
+        console.log('pisaste un objeto!');
+      }
+    } else {
+      alert('No hay ningún objeto :(');
+      console.log('No hay ningún objeto :(');
     }
+  };
+
+  getCanvasPosition(canvasID) {
+    const rect = canvasID.getBoundingClientRect();
+    this.setState({
+      canvasPosition: {
+        left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom,
+      },
+    });
   }
 
   drawHexes() {
@@ -110,11 +147,11 @@ export default class Tablero extends React.Component {
     const rTopSide = Math.round(hexOrigin.y / vertDist);
     const rBottomSide = Math.round((canvasHeight - hexOrigin.y) / vertDist);
     let p = 0;
-    for (let r = 0; r <= rBottomSide; r++) {
-      if (r % 2 === 0 && r != 0) {
-        p++;
+    for (let r = 0; r <= rBottomSide; r += 1) {
+      if (r % 2 === 0 && r !== 0) {
+        p += 1;
       }
-      for (let q = -qLeftSide; q <= qRightSide; q++) {
+      for (let q = -qLeftSide; q <= qRightSide; q += 1) {
         const { x, y } = this.hexToPixel(this.Hex(q - p, r));
         if ((x > hexWidth / 2 && x < canvasWidth - hexWidth / 2) && (y > hexHeight / 2 && y < canvasHeight - hexHeight / 2)) {
           this.drawHex(this.canvasHex, this.Point(x, y), 'black', 1, 'lightgreen');
@@ -123,11 +160,11 @@ export default class Tablero extends React.Component {
       }
     }
     let n = 0;
-    for (let r = -1; r >= -rTopSide; r--) {
-      if (r % 2 != 0) {
-        n++;
+    for (let r = -1; r >= -rTopSide; r -= 1) {
+      if (r % 2 !== 0) {
+        n += 1;
       }
-      for (let q = -qLeftSide; q <= qRightSide; q++) {
+      for (let q = -qLeftSide; q <= qRightSide; q += 1) {
         const { x, y } = this.hexToPixel(this.Hex(q + n, r));
         if ((x > hexWidth / 2 && x < canvasWidth - hexWidth / 2) && (y > hexHeight / 2 && y < canvasHeight - hexHeight / 2)) {
           this.drawHex(this.canvasHex, this.Point(x, y), 'black', 1, 'lightgreen');
@@ -243,33 +280,6 @@ export default class Tablero extends React.Component {
     }
   }
 
-  getHexCornerCoord(center, i) {
-    const angle_deg = 60 * i - 30;
-    const angle_rad = Math.PI / 180 * angle_deg;
-    const x = center.x + this.state.hexSize * Math.cos(angle_rad);
-    const y = center.y + this.state.hexSize * Math.sin(angle_rad);
-    return this.Point(x, y);
-  }
-
-  getHexParameters() {
-    const hexHeight = this.state.hexSize * 2;
-    const hexWidth = Math.sqrt(3) / 2 * hexHeight;
-    const vertDist = hexHeight * 3 / 4;
-    const horizDist = hexWidth;
-    return {
-      hexWidth, hexHeight, vertDist, horizDist,
-    };
-  }
-
-  getCanvasPosition(canvasID) {
-    const rect = canvasID.getBoundingClientRect();
-    this.setState({
-      canvasPosition: {
-        left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom,
-      },
-    });
-  }
-
   Point(x, y) {
     return { x, y };
   }
@@ -300,7 +310,7 @@ export default class Tablero extends React.Component {
     const {
       hexWidth, hexHeight, vertDist, horizDist,
     } = this.state.hexParameters;
-    for (let i = 0; i <= 5; i++) {
+    for (let i = 0; i <= 5; i += 1) {
       const { q, r, s } = this.getCubeNeighbor(this.Hex(h.q, h.r, h.s), i);
       const { x, y } = this.hexToPixel(this.Hex(q, r, s));
       if ((x > hexWidth / 2 && x < canvasWidth - hexWidth / 2) && (y > hexHeight / 2 && y < canvasHeight - hexHeight / 2)) {
@@ -309,31 +319,18 @@ export default class Tablero extends React.Component {
     }
   }
 
-  ConectarHex = async (q, r, s) => {
-    const response = await axios.post(`${SERVER_URL}/tableros/${this.state.tablero.id}`, {
-      Q: q,
-      R: r,
-      S: s,
-    });
-    if (response.data.objeto) {
-      if (response.data.objeto.tipo === 10) {
-        alert('Encontraste la RATA VOLADORA');
-        console.log('Encontraste la RATA VOLADORA');
-      } else {
-        alert('pisaste un objeto!');
-        console.log('pisaste un objeto!');
-      }
-    } else {
-      alert('No hay ningún objeto :(');
-      console.log('No hay ningún objeto :(');
+  drawClickedHexes() {
+    this.state.clickedHexs.map((h) => this.drawClickedHex(h));
+  }
+
+  drawHex(canvasID, center, lineColor, width, fillColor) {
+    for (let i = 0; i <= 5; i += 1) {
+      const start = this.getHexCornerCoord(center, i);
+      const end = this.getHexCornerCoord(center, i + 1);
+      this.fillHex(canvasID, center, fillColor);
+      this.drawLine(canvasID, start, end, lineColor, width);
     }
-  };
-
-  ObtenerRata = async () => {
-    const response = await axios.post(`${SERVER_URL}/tableros/${this.state.tablero.data.id}`, {
-
-    });
-  };
+  }
 
   handleClick() {
     const Cq = this.state.currentHex.q;
@@ -358,7 +355,7 @@ export default class Tablero extends React.Component {
         Boolean = false;
       }
     });
-    for (let i = 0; i <= 5; i++) {
+    for (let i = 0; i <= 5; i += 1) {
       const { q, r, s } = this.getCubeNeighbor(this.Hex(playerPosition.q, playerPosition.r, playerPosition.s), i);
 
       if (Cq === q && Cr === r && Cs === s) {

@@ -1,3 +1,5 @@
+import { PropTypes } from 'react';
+
 function BlueButton(props) {
   return (
     <div>
